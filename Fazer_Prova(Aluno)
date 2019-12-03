@@ -1,0 +1,65 @@
+def main():
+    resultados = []
+    import os.path
+    x = str(os.path.isfile('prova.txt'))
+    if x == 'True':
+        with open('prova.txt', 'r') as arq:
+            temp = arq.readlines()
+            prova = []
+            for i in range(0, len(temp)):
+                prova.append(temp[i].strip('\n'))
+            arq.close()
+        if prova == []:
+            print('O arquivo de prova está vazio, verifique.')
+            exit()
+    else:
+        print('O arquivo de prova ainda não foi gerado pelo professor.')
+        exit()
+    y = str(os.path.isfile('resultados.txt'))
+    if y == 'True':
+        with open('resultados.txt', 'r') as old:
+            temp = old.readlines()
+            if temp == []:
+                a = input('Insira o seu nome completo:\n')
+                resultados.append(a)
+                for i in range(0, len(prova), 3):
+                    print(prova[i])
+                    r = input('Insira a sua resposta:\n')
+                    resultados.append(r)
+            else:
+                for i in range(0, len(temp)):
+                    resultados.append(temp[i].strip('\n'))
+                a = input('Insira o seu nome completo:\n')
+                resultados.append(a)
+                for i in range(0, len(prova), 3):
+                    print(prova[i])
+                    r = input('Insira a sua resposta:\n')
+                    resultados.append(r)
+            old.close()
+    else:
+        a = input('Insira o seu nome completo:\n')
+        resultados.append(a)
+        for i in range(0, len(prova), 3):
+            print(prova[i])
+            r = input('Insira a sua resposta:\n')
+            resultados.append(r)
+    with open('resultados.txt', 'w') as output:
+        for item in resultados:
+            output.write("%s\n" % item)
+        output.close()
+    nota = int(0)
+    if float(resultados[len(resultados)-6]) == float(prova[1]):
+        nota = nota + int(prova[2])
+    if float(resultados[len(resultados)-5]) == float(prova[4]):
+        nota = nota + int(prova[5])
+    if float(resultados[len(resultados)-4]) == float(prova[7]):
+        nota = nota + int(prova[8])
+    if float(resultados[len(resultados)-3]) == float(prova[10]):
+        nota = nota + int(prova[11])
+    if float(resultados[len(resultados)-2]) == float(prova[13]):
+        nota = nota + int(prova[14])
+    if float(resultados[len(resultados)-1]) == float(prova[16]):
+        nota = nota + int(prova[17])
+    print('Sua nota:', nota)
+if __name__ == '__main__':
+    main()
