@@ -1,0 +1,35 @@
+#Autores do código: Maria Luiza Cavalcanti, Sebastião Vieira, Pricylla Cavalcante e Robson Raabi
+
+
+def main():
+    import os.path
+    x = str(os.path.isfile('prova.txt'))
+    if x == 'False':
+        prova = []
+        for i in range(1, 4):
+            print('Insira a pergunta', i, 'sobre adição')
+            prova.append(input())
+            print('Insira a resposta certa da pergunta:', i)
+            prova.append(float(input()))
+            print('Insira quanto vale a pergunta:', i)
+            prova.append(int(input()))
+        for i in range(1, 4):
+            print('Insira a pergunta', i, 'sobre subtração')
+            prova.append(input())
+            print('Insira a resposta certa da pergunta:', i)
+            prova.append(float(input()))
+            print('Insira quanto vale a pergunta:', i)
+            prova.append(int(input()))
+        total = prova[1] + prova[4] + prova[7] + prova[10] + prova[13] + prova[16]
+        if total != 10:
+            print('O valor total das questões precisa ser igual a 10')
+            exit()
+        with open('prova.txt', 'w') as output:
+            for item in prova:
+                output.write("%s\n" % item)
+            output.close()
+        print('Arquivo de prova gerado com sucesso.')
+    else:
+        print('O arquivo de prova já foi gerado.')
+if __name__ == '__main__':
+    main()
