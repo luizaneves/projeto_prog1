@@ -1,0 +1,95 @@
+
+
+
+
+def main():
+    import os.path
+    x = str(os.path.isfile('prova.txt'))
+    if x == 'True':
+        with open('prova.txt', 'r') as arq:
+            temp = arq.readlines()
+            prova = []
+            for i in range(0, len(temp)):
+                prova.append(temp[i].strip('\n'))
+            arq.close()
+        if prova == []:
+            print('O arquivo de prova está vazio, verifique.')
+            exit()
+    else:
+        print('O arquivo de prova não foi encontrado no diretório.')
+        exit()
+    y = str(os.path.isfile('resultados.txt'))
+    if x == 'True':
+        with open('resultados.txt', 'r') as arq:
+            temp = arq.readlines()
+            resultados = []
+            for i in range(0, len(temp)):
+                resultados.append(temp[i].strip('\n'))
+            arq.close()
+        if resultados == []:
+            print('O arquivo de resultados está vazio, verifique.')
+            exit()
+    else:
+        print('O arquivo de resultados não foi encontrado no diretório.')
+        exit()
+    notas1 = []
+    notas2 = []
+    notas3 = []
+    notas4 = []
+    notas5 = []
+    notas6 = []
+    for i in range(1, len(prova), 3):
+        if i == 1:
+            for j in range(1, len(resultados), 7):
+                if float(prova[i]) == float(resultados[j]):
+                    notas1.append(resultados[j-1])
+                    notas1.append(int(prova[i+1]))
+                else:
+                    notas1.append(resultados[j-1])
+                    notas1.append(0)
+        elif i == 4:
+            for j in range(2, len(resultados), 7):
+                if float(prova[i]) == float(resultados[j]):
+                    notas2.append(resultados[j-2])
+                    notas2.append(int(prova[i+1]))
+                else:
+                    notas2.append(resultados[j-2])
+                    notas2.append(0)
+        elif i == 7:
+            for j in range(3, len(resultados), 7):
+                if float(prova[i]) == float(resultados[j]):
+                    notas3.append(resultados[j-3])
+                    notas3.append(int(prova[i+1]))
+                else:
+                    notas3.append(resultados[j-3])
+                    notas3.append(0)
+        elif i == 10:
+            for j in range(4, len(resultados), 7):
+                if float(prova[i]) == float(resultados[j]):
+                    notas4.append(resultados[j-4])
+                    notas4.append(int(prova[i+1]))
+                else:
+                    notas4.append(resultados[j-4])
+                    notas4.append(0)
+        elif i == 13:
+            for j in range(5, len(resultados), 7):
+                if float(prova[i]) == float(resultados[j]):
+                    notas5.append(resultados[j-5])
+                    notas5.append(int(prova[i+1]))
+                else:
+                    notas5.append(resultados[j-5])
+                    notas5.append(0)
+        else:
+            for j in range(6, len(resultados), 7):
+                if float(prova[i]) == float(resultados[j]):
+                    notas6.append(resultados[j-6])
+                    notas6.append(int(prova[i+1]))
+                else:
+                    notas6.append(resultados[j-6])
+                    notas6.append(0)
+    print('Notas da Turma:')
+    for i in range(0, len(notas1), 2):
+        sum = notas1[i+1] + notas2[i+1] + notas3[i+1] + notas4[i+1] + notas5[i+1] + notas6[i+1]
+        print('Aluno: ' + notas1[i] + ' --> ' + str(sum))
+if __name__ == '__main__':
+    main()
