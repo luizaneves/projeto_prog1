@@ -1,6 +1,4 @@
-
-
-
+#Autores do código: Maria Luiza Cavalcanti, Sebastião Vieira, Pricylla Cavalcante e Robson Raabi
 
 def main():
     import os.path
